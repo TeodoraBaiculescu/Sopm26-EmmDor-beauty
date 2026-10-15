@@ -1,0 +1,5 @@
+Nume: Carabelea Emma
+Grupa: 4LF631
+Laborator: 2
+Branch: student/carabelea-emma
+Subiect: Lucrul colaborativ cu Git si alegerea unui API
