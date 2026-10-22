@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Detalii Produs</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text"><span class="brand-name">EMMDOR</span><span class="brand-sub">BEAUTY</span></div>
+            </a>
+            <div class="header-icons">
+                <a href="favorite.html"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="max-width: 900px; margin: 40px auto; display:flex; gap: 40px; background:#fff; padding: 30px; border-radius: 8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);" id="product-detail-container"></div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'));
+            const product = allProducts.find(p => p.id === id) || luxuryProducts[0];
+
+            document.getElementById('product-detail-container').innerHTML = `
+                <div style="flex: 1;"><img src="${product.img}" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px;"></div>
+                <div style="flex: 1; display:flex; flex-direction:column; justify-content:center;">
+                    <span style="font-size:12px; color:#888; font-weight:700;">${product.brand}</span>
+                    <h2 style="font-family:'Cinzel', serif; margin: 10px 0;">${product.name}</h2>
+                    <div style="font-size:22px; font-weight:bold; color:#111; margin-bottom:20px;">${product.price.toFixed(2).replace('.', ',')} Lei</div>
+                    <button class="add-cart-btn-sephora" style="padding:12px;" onclick="addToCart(${product.id})">ADAUGĂ ÎN COȘ</button>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
