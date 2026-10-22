@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>✨ TRANSPORT GRATUIT PESTE 200 LEI | CADOU SPRÂNCENE LA 500 LEI ✨</span>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text">
+                    <span class="brand-name">EMMDOR</span>
+                    <span class="brand-sub">BEAUTY</span>
+                </div>
+            </a>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Caută..." autocomplete="off">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="search-results-dropdown" id="search-results"></div>
+            </div>
+
+            <div class="header-icons">
+                <a href="favorite.html"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html" class="active">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contact-page-wrapper">
+        <h1 class="contact-main-title">CONTACTEAZĂ-NE</h1>
+
+        <!-- Secțiunea Header Contact cu 3 Coloane -->
+        <div class="contact-info-strip">
+            <div class="contact-info-col">
+                <strong>Program relații clienți:</strong><br>
+                <span>Luni - Duminică: 09:00 - 21:00</span><br>
+                <strong>Telefon:</strong> <span>0368 400 900</span><br>
+                <strong>Email:</strong> <span>suportclienti@emmdor.ro</span>
+            </div>
+            
+            <div class="contact-info-col border-center">
+                <strong>Formular de contact</strong>
+            </div>
+
+            <div class="contact-info-col">
+                <strong>Adresa:</strong><br>
+                <span>Brașov, Cartier Coresi,<br>Str. Zaharia Stancu Nr. 1,<br>EmmDor Beauty Lounge.</span>
+            </div>
+        </div>
+
+        <!-- Secțiunea Formular "Ai o Întrebare?" -->
+        <div class="contact-form-section">
+            <h2 class="question-title">Ai o Întrebare?</h2>
+
+            <form onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes!');">
+                <div class="form-grid-layout">
+                    <!-- Coloana Stânga: Câmpuri -->
+                    <div class="form-left-col">
+                        <div class="floating-field">
+                            <label class="field-label">Solicitare*</label>
+                            <select required class="custom-input select-input">
+                                <option value="" disabled selected>Selecteaza o optiune</option>
+                                <option value="1">Comanda mea / Urmareste</option>
+                                <option value="2">Comanda mea / Anulare sau rambursare</option>
+                                <option value="3">Program de fidelitate</option>
+                                <option value="4">Produse sau oferte</option>
+                                <option value="5">Contul meu / acces</option>
+                                <option value="6">Datele mele personale</option>
+                                <option value="7">Magazine EmmDor Beauty</option>
+                                <option value="8">Altele</option>
+                            </select>
+                        </div>
+
+                        <div class="floating-field">
+                            <input type="text" placeholder="Prenume*" required class="custom-input">
+                        </div>
+
+                        <div class="floating-field">
+                            <input type="text" placeholder="Nume*" required class="custom-input">
+                        </div>
+
+                        <div class="floating-field">
+                            <input type="email" placeholder="Email*" required class="custom-input">
+                        </div>
+
+                        <div class="floating-field">
+                            <input type="text" placeholder="Cod postal" class="custom-input">
+                        </div>
+                    </div>
+
+                    <!-- Coloana Dreapta: Textarea Explicații -->
+                    <div class="form-right-col">
+                        <label class="field-label-text">subiectul solicitarii *</label>
+                        <div class="textarea-box">
+                            <textarea maxlength="1000" id="message-area" placeholder="Explica solicitarea" required></textarea>
+                            <span class="char-count" id="char-counter">1000/1000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-action-btn">
+                    <button type="submit" class="add-cart-btn-sephora" style="max-width: 250px; background:#000; color:#fff;">TRIMITE SOLICITAREA</button>
+                </div>
+            </form>
+
+            <!-- Subsol Legal & Confidentialitate -->
+            <div class="contact-legal-text">
+                <p class="conf-title">Respectam cu strictete confidentialitatea tuturor datelor personale.</p>
+                <p class="req-star">*Camp obligatoriu</p>
+                <p class="legal-desc">
+                    Informatiile colectate prin acest formular sunt necesare pentru procesarea solicitarii tale. Acestea sunt trimise catre Serviciul Clienti EmmDor Beauty responsabil si sunt salvate de EmmDor pentru o perioada limitata, in scopul procesarii. Iti poti exercita dreptul de acces, de rectificare, portabilitate, stergere, opozitie si restrictionare a prelucrarii datelor tale personale trimitand o solicitare prin acest formular sau contactandu-ne prin e-mail la urmatoarea adresa: <a href="mailto:privacy@emmdor.ro">privacy@emmdor.ro</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER STIL SEPHORA -->
+    <footer class="sephora-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AJUTOR & SUPORT</h4>
+                <ul>
+                    <li><a href="contact.html">Contact & Întrebări Frecvente</a></li>
+                    <li><a href="#">Modalități de plată</a></li>
+                    <li><a href="#">Condiții de livrare</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>DESPRE EMMDOR</h4>
+                <ul>
+                    <li><a href="#">Despre EmmDor Beauty</a></li>
+                    <li><a href="#">Emma Carabelea Beauty Lounge</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>INSPIRAȚIE</h4>
+                <ul>
+                    <li><a href="branduri_lux.html">Branduri de Lux</a></li>
+                    <li><a href="branduri_accesibile.html">Branduri Accesibile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>URMĂREȘTE-NE</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 EmmDor Beauty & Emma Carabelea Lounge. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Contor caractere pentru subiectul solicitării
+        const textArea = document.getElementById('message-area');
+        const counter = document.getElementById('char-counter');
+        if (textArea && counter) {
+            textArea.addEventListener('input', () => {
+                const remaining = 1000 - textArea.value.length;
+                counter.innerText = `${remaining}/1000`;
+            });
+        }
+    </script>
+</body>
+</html>
