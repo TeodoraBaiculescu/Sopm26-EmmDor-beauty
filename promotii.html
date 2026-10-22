@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Promoții -40%</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar"><span>✨ TRANSPORT GRATUIT PESTE 200 LEI | CADOU SPRÂNCENE LA 500 LEI ✨</span></div>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text"><span class="brand-name">EMMDOR</span><span class="brand-sub">BEAUTY</span></div>
+            </a>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Caută...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="favorite.html"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="active sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-header">
+        <h2>PROMOȚII -40% REDUCERE</h2>
+        <p class="subtitle">Produsele preferate la prețuri speciale</p>
+    </div>
+
+    <div class="products-grid" id="promo-grid"></div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('promo-grid');
+            grid.innerHTML = promoProducts.map(p => `
+                <div class="product-card" data-id="${p.id}">
+                    <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
+                    <span class="sephora-tag" style="background:#e63946;">-40% OFF</span>
+                    <div class="product-img"><img src="${p.img}" alt="${p.name}"></div>
+                    <div class="product-info-sephora">
+                        <span class="sephora-brand">${p.brand}</span>
+                        <h4 class="sephora-title">${p.name}</h4>
+                        <div class="sephora-price">
+                            <span style="text-decoration: line-through; color: #999; font-size: 13px; margin-right: 6px;">${p.oldPrice.toFixed(2).replace('.', ',')} Lei</span>
+                            <span style="color: #e63946; font-size: 16px; font-weight: 800;">${p.price.toFixed(2).replace('.', ',')} Lei</span>
+                        </div>
+                        <button class="add-cart-btn-sephora" style="margin-top:10px;" onclick="addToCart(${p.id})">Adauga in cos</button>
+                    </div>
+                </div>
+            `).join('');
+            markActiveFavorites();
+        });
+    </script>
+</body>
+</html>
