@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Coșul Tău</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text"><span class="brand-name">EMMDOR</span><span class="brand-sub">BEAUTY</span></div>
+            </a>
+            <div class="header-icons">
+                <a href="favorite.html"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html"><i class="fa-solid fa-bag-shopping" style="color:#d4af37;"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-header">
+        <h2>COȘUL TĂU DE CUMPĂRĂTURI</h2>
+    </div>
+
+    <div class="cart-container" id="cart-content"></div>
+
+    <script src="script.js"></script>
+    <script>
+        function renderCartPage() {
+            const container = document.getElementById('cart-content');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:40px; color:#888;">Coșul tău este gol.</p>';
+                return;
+            }
+
+            let total = 0;
+            const rows = cart.map(item => {
+                const subtotal = item.price * (item.qty || 1);
+                total += subtotal;
+                return `
+                    <tr>
+                        <td><img src="${item.img}" class="cart-item-img"></td>
+                        <td><strong>${item.brand}</strong><br>${item.name}</td>
+                        <td>${item.price.toFixed(2).replace('.', ',')} Lei</td>
+                        <td>
+                            <button class="cart-qty-btn" onclick="updateCartQty(${item.id}, -1)">-</button>
+                            <span style="margin: 0 8px;">${item.qty || 1}</span>
+                            <button class="cart-qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
+                        </td>
+                        <td><strong>${subtotal.toFixed(2).replace('.', ',')} Lei</strong></td>
+                        <td><button style="border:none; background:transparent; color:#e63946; cursor:pointer;" onclick="removeFromCart(${item.id})"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            }).join('');
+
+            const hasGift = total >= 500;
+
+            container.innerHTML = `
+                <table class="cart-table">
+                    <thead>
+                        <tr><th>PRODUS</th><th>DENUMIRE</th><th>PREȚ</th><th>CANTITATE</th><th>SUBTOTAL</th><th></th></tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+
+                ${hasGift ? `
+                    <div class="gift-banner">
+                        🎉 FELICITĂRI! Ai depășit suma de 500 LEI! Ai primit CADOU pachetul: Pensat + Laminat + Vopsit Sprâncene la Emma Carabelea Beauty Lounge!
+                    </div>
+                ` : `
+                    <div style="text-align:right; margin-top:10px; font-size:12px; color:#666;">
+                        Mai adaugă produse de ${(500 - total).toFixed(2)} LEI pentru a primi CADOU pachetul de sprâncene la Emma Carabelea!
+                    </div>
+                `}
+
+                <div class="cart-summary">
+                    <h3>TOTAL: <span style="color:#d4af37;">${total.toFixed(2).replace('.', ',')} Lei</span></h3>
+                    <button class="add-cart-btn-sephora" style="width: auto; padding: 12px 30px; margin-top: 15px;" onclick="alert('Comandă plasată cu succes!')">FINALIZEAZĂ COMANDA</button>
+                </div>
+            `;
+        }
+        document.addEventListener('DOMContentLoaded', renderCartPage);
+    </script>
+</body>
+</html>
