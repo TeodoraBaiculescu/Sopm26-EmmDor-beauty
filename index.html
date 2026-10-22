@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Acasă</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>✨ TRANSPORT GRATUIT PESTE 200 LEI | CADOU SPRÂNCENE LA 500 LEI ✨</span>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text">
+                    <span class="brand-name">EMMDOR</span>
+                    <span class="brand-sub">BEAUTY</span>
+                </div>
+            </a>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Caută brand, produs (ex: Dior, Fenty, Maybelline)..." autocomplete="off">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="search-results-dropdown" id="search-results"></div>
+            </div>
+
+            <div class="header-icons">
+                <a href="favorite.html" title="Favorite"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html" title="Coș"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BANNER PRINCIPAL: OFERTĂ EMMA CARABELEA -->
+    <section class="hero-banner">
+        <div class="hero-overlay">
+            <span class="hero-tag"><i class="fa-solid fa-crown"></i> OFERTĂ EXCLUSIVĂ EMMDOR</span>
+            <h1>LAMINARE & STYLING SPRÂNCENE CADOU</h1>
+            <p>Efectuează o comandă de peste <strong>500 LEI</strong> și primești gratuit pachetul complet:</p>
+            <div class="hero-perks">✨ Pensat + Laminat + Vopsit Sprâncene ✨</div>
+            <p class="hero-lounge">Serviciu oferit în cadrul salonului <strong>Emma Carabelea Beauty Lounge</strong></p>
+            <a href="produse.html" class="hero-btn">DESCOPERĂ PRODUSELE</a>
+        </div>
+    </section>
+
+    <!-- SECȚIUNE PROMOȚII -40% REDUCERE -->
+    <div class="section-header">
+        <h2>OFERTE SPECIALE %</h2>
+        <p class="subtitle">Cele mai dorite produse cu 40% reducere</p>
+    </div>
+    <div class="products-grid" id="home-promo-grid"></div>
+
+    <!-- SECȚIUNE BRANDURI DE LUX BESTSELLERS -->
+    <div class="section-header">
+        <h2>SELECȚIE BRANDURI DE LUX</h2>
+        <p class="subtitle">Dior, Huda Beauty, Rare Beauty, Fenty Beauty</p>
+    </div>
+    <div class="products-grid" id="home-lux-grid"></div>
+
+    <!-- SECȚIUNE AVANTAJE CLIENT (STIL SEPHORA) -->
+    <section class="services-bar">
+        <div class="service-item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <div>
+                <h4>Click & Collect</h4>
+                <p>Ridicare gratuită în 2 ore</p>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <h4>Livrare gratuită</h4>
+                <p>La comenzi de peste 200 Lei</p>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <h4>Plată securizată</h4>
+                <p>Card, Ramburs sau Rate</p>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div>
+                <h4>Retur Simplu</h4>
+                <p>Până la 14 zile calendaristice</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER EXTINS STIL SEPHORA -->
+    <footer class="sephora-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AJUTOR & SUPORT</h4>
+                <ul>
+                    <li><a href="contact.html">Contact & Întrebări Frecvente</a></li>
+                    <li><a href="#">Modalități de plată</a></li>
+                    <li><a href="#">Condiții de livrare</a></li>
+                    <li><a href="#">Politica de retur</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>DESPRE EMMDOR</h4>
+                <ul>
+                    <li><a href="#">Despre EmmDor Beauty</a></li>
+                    <li><a href="#">Emma Carabelea Beauty Lounge</a></li>
+                    <li><a href="#">Cariere</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>INSPIRAȚIE</h4>
+                <ul>
+                    <li><a href="branduri_lux.html">Branduri de Lux</a></li>
+                    <li><a href="branduri_accesibile.html">Branduri Accesibile</a></li>
+                    <li><a href="promotii.html">Ghid Promoții</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>URMĂREȘTE-NE</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 EmmDor Beauty & Emma Carabelea Lounge. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const promoGrid = document.getElementById('home-promo-grid');
+            if (promoGrid) {
+                promoGrid.innerHTML = promoProducts.slice(0, 4).map(p => `
+                    <div class="product-card" data-id="${p.id}">
+                        <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
+                        <span class="sephora-tag" style="background:#e63946;">-40% OFF</span>
+                        <div class="product-img" onclick="goToProduct(${p.id})"><img src="${p.img}" alt="${p.name}"></div>
+                        <div class="product-info-sephora">
+                            <span class="sephora-brand">${p.brand}</span>
+                            <h4 class="sephora-title">${p.name}</h4>
+                            <div class="sephora-price">
+                                <span style="text-decoration: line-through; color: #999; font-size: 12px;">${p.oldPrice.toFixed(2).replace('.', ',')} Lei</span>
+                                <span style="color: #e63946;">${p.price.toFixed(2).replace('.', ',')} Lei</span>
+                            </div>
+                            <button class="add-cart-btn-sephora" style="margin-top:8px;" onclick="addToCart(${p.id})">Adaugă în coș</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const luxGrid = document.getElementById('home-lux-grid');
+            if (luxGrid) {
+                luxGrid.innerHTML = luxuryProducts.slice(0, 4).map(p => `
+                    <div class="product-card" data-id="${p.id}">
+                        <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
+                        ${p.badge ? `<span class="sephora-tag">${p.badge}</span>` : ''}
+                        <div class="product-img" onclick="goToProduct(${p.id})"><img src="${p.img}" alt="${p.name}"></div>
+                        <div class="product-info-sephora">
+                            <span class="sephora-brand">${p.brand}</span>
+                            <h4 class="sephora-title">${p.name}</h4>
+                            <div class="sephora-price">${p.price.toFixed(2).replace('.', ',')} Lei</div>
+                            <button class="add-cart-btn-sephora" onclick="addToCart(${p.id})">Adaugă în coș</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            markActiveFavorites();
+        });
+    </script>
+</body>
+</html>
