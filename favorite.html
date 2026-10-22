@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Favorite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text"><span class="brand-name">EMMDOR</span><span class="brand-sub">BEAUTY</span></div>
+            </a>
+            <div class="header-icons">
+                <a href="favorite.html"><i class="fa-solid fa-heart" style="color:#e63946;"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-header">
+        <h2>LISTA TA DE FAVORITE ❤️</h2>
+        <p class="subtitle">Produsele salvate</p>
+    </div>
+
+    <div class="favorites-container" id="favorites-list"></div>
+
+    <script src="script.js"></script>
+    <script>
+        function renderFavoritesPage() {
+            const container = document.getElementById('favorites-list');
+            if (favorites.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:40px; color:#888;">Nu ai adăugat niciun produs la favorite încă.</p>';
+                return;
+            }
+
+            container.innerHTML = favorites.map(p => `
+                <div class="fav-compact-card">
+                    <img src="${p.img}" alt="${p.name}" class="fav-compact-img">
+                    <div class="fav-compact-details">
+                        <span class="fav-compact-brand">${p.brand}</span>
+                        <div class="fav-compact-title">${p.name}</div>
+                        <div class="fav-compact-price">${p.price.toFixed(2).replace('.', ',')} Lei</div>
+                    </div>
+                    <div class="fav-compact-actions">
+                        <button class="add-cart-btn-sephora" style="padding: 8px 15px; font-size:11px;" onclick="addToCart(${p.id})">Adaugă</button>
+                        <button class="add-cart-btn-sephora" style="padding: 8px 15px; font-size:11px; background:#e63946; color:#fff; border-color:#e63946;" onclick="toggleFavorite(${p.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        document.addEventListener('DOMContentLoaded', renderFavoritesPage);
+    </script>
+</body>
+</html>
