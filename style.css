@@ -1,0 +1,869 @@
+/* ==========================================
+   1. RESET & DEFINIRI GLOBALE
+   ========================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: #fafafa; 
+    color: #111; 
+}
+
+/* Bara Neagră de Sus */
+.top-bar { 
+    background-color: #000; 
+    color: #d4af37; 
+    text-align: center; 
+    padding: 8px; 
+    font-size: 11px; 
+    font-weight: 600; 
+    letter-spacing: 1.5px; 
+}
+
+/* ==========================================
+   2. HEADER & NAVIGAȚIE
+   ========================================== */
+header { 
+    background-color: #fff; 
+    border-bottom: 1px solid #eaeaea; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+}
+
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 5%; 
+}
+
+/* Logo EmmDor Beauty */
+.logo-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    text-decoration: none; 
+}
+
+.logo-badge { 
+    width: 44px; 
+    height: 44px; 
+    background-color: #111; 
+    color: #d4af37; 
+    border: 2px solid #d4af37; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: 'Cinzel', serif; 
+    font-weight: 700; 
+    font-size: 18px; 
+}
+
+.logo-text { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.brand-name { 
+    font-family: 'Cinzel', serif; 
+    font-size: 22px; 
+    font-weight: 700; 
+    letter-spacing: 3px; 
+    color: #111; 
+}
+
+.brand-sub { 
+    font-size: 10px; 
+    letter-spacing: 5px; 
+    color: #d4af37; 
+    font-weight: 600; 
+}
+
+/* Căutare Live Dropdown */
+.search-box { 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    background: #f4f4f4; 
+    border-radius: 25px; 
+    padding: 6px 15px; 
+    width: 38%; 
+}
+
+.search-box input { 
+    border: none; 
+    background: transparent; 
+    outline: none; 
+    width: 100%; 
+    padding: 6px; 
+    font-size: 13px; 
+}
+
+.search-box button { 
+    border: none; 
+    background: transparent; 
+    cursor: pointer; 
+    color: #555; 
+}
+
+.search-results-dropdown {
+    position: absolute; 
+    top: 45px; 
+    left: 0; 
+    right: 0; 
+    background: #fff; 
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+    max-height: 350px; 
+    overflow-y: auto; 
+    display: none; 
+    z-index: 1100;
+}
+
+.search-item { 
+    display: flex; 
+    align-items: center; 
+    padding: 10px 15px; 
+    gap: 12px; 
+    border-bottom: 1px solid #f0f0f0; 
+    cursor: pointer; 
+    transition: 0.2s; 
+}
+
+.search-item:hover { 
+    background-color: #f9f9f9; 
+}
+
+.search-item img { 
+    width: 40px; 
+    height: 40px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+}
+
+.search-item-info { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.search-brand { 
+    font-size: 10px; 
+    color: #888; 
+    font-weight: 700; 
+}
+
+.search-name { 
+    font-size: 12px; 
+    color: #222; 
+    font-weight: 500; 
+}
+
+.search-price { 
+    font-size: 12px; 
+    font-weight: 700; 
+    color: #111; 
+}
+
+.no-results { 
+    padding: 15px; 
+    text-align: center; 
+    color: #777; 
+    font-size: 13px; 
+}
+
+/* Iconițe Header (Favorite & Coș) */
+.header-icons { 
+    display: flex; 
+    gap: 20px; 
+}
+
+.header-icons a { 
+    color: #111; 
+    font-size: 18px; 
+    position: relative; 
+    text-decoration: none; 
+}
+
+.header-icons .badge { 
+    position: absolute; 
+    top: -8px; 
+    right: -10px; 
+    background-color: #d4af37; 
+    color: #fff; 
+    font-size: 10px; 
+    font-weight: bold; 
+    width: 18px; 
+    height: 18px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Meniu de Navigare */
+.main-nav { 
+    border-top: 1px solid #f0f0f0; 
+}
+
+.main-nav ul { 
+    display: flex; 
+    justify-content: center; 
+    list-style: none; 
+    gap: 25px; 
+    padding: 12px 0; 
+}
+
+.main-nav ul li a { 
+    text-decoration: none; 
+    color: #222; 
+    font-size: 12px; 
+    font-weight: 600; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    transition: 0.3s; 
+}
+
+.main-nav ul li a:hover, 
+.main-nav ul li a.active { 
+    color: #d4af37; 
+}
+
+.sale-link { 
+    color: #e63946 !important; 
+}
+
+/* ==========================================
+   3. HERO BANNER PRINCIPAL (Ofertă Sprâncene)
+   ========================================== */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200') center/cover no-repeat;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-overlay { 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.hero-tag { 
+    background: #d4af37; 
+    color: #000; 
+    font-weight: 800; 
+    font-size: 11px; 
+    padding: 5px 12px; 
+    border-radius: 4px; 
+    letter-spacing: 1.5px; 
+    display: inline-block; 
+    margin-bottom: 15px; 
+}
+
+.hero-banner h1 { 
+    font-family: 'Cinzel', serif; 
+    font-size: 32px; 
+    color: #d4af37; 
+    margin-bottom: 15px; 
+    letter-spacing: 2px; 
+}
+
+.hero-banner p { 
+    font-size: 14px; 
+    color: #eee; 
+    line-height: 1.6; 
+}
+
+.hero-perks { 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #fff; 
+    margin: 15px 0; 
+    letter-spacing: 1px; 
+}
+
+.hero-lounge { 
+    font-size: 13px; 
+    color: #ccc; 
+    margin-bottom: 25px; 
+}
+
+.hero-btn { 
+    display: inline-block; 
+    background: #d4af37; 
+    color: #000; 
+    padding: 12px 30px; 
+    font-weight: 700; 
+    font-size: 12px; 
+    text-decoration: none; 
+    border-radius: 4px; 
+    transition: 0.3s; 
+    letter-spacing: 1px; 
+}
+
+.hero-btn:hover { 
+    background: #fff; 
+    color: #000; 
+}
+
+/* ==========================================
+   4. CARDURI PRODUSE & GRILĂ
+   ========================================== */
+.section-header { 
+    text-align: center; 
+    margin: 35px 0 20px 0; 
+}
+
+.section-header h2 { 
+    font-family: 'Cinzel', serif; 
+    font-size: 24px; 
+    letter-spacing: 2px; 
+}
+
+.subtitle { 
+    font-size: 12px; 
+    color: #666; 
+    margin-top: 4px; 
+}
+
+.products-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 20px; 
+    padding: 0 5% 50px 5%; 
+}
+
+.product-card { 
+    background: #fff; 
+    border: 1px solid #eee; 
+    border-radius: 6px; 
+    padding: 15px; 
+    position: relative; 
+    transition: 0.3s; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.product-card:hover { 
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+}
+
+.fav-btn { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    background: transparent; 
+    border: none; 
+    font-size: 18px; 
+    color: #aaa; 
+    cursor: pointer; 
+    z-index: 10; 
+}
+
+.fav-btn.active { 
+    color: #e63946; 
+}
+
+.sephora-tag { 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    background: #000; 
+    color: #fff; 
+    font-size: 11px; 
+    font-weight: 700; 
+    padding: 3px 8px; 
+    border-radius: 3px; 
+    z-index: 5; 
+}
+
+.product-img { 
+    height: 180px; 
+    width: 100%; 
+    margin-bottom: 12px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Fundal curat pentru pozele fără fundal */
+}
+
+.product-img img { 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; /* Ajustează poza fără să o taie */
+    border-radius: 4px;
+}
+
+.product-info-sephora { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+    margin-top: 10px; 
+}
+
+.sephora-brand { 
+    font-size: 14px; 
+    font-weight: 800; 
+    color: #000; 
+    text-transform: uppercase; 
+    margin-bottom: 4px; 
+}
+
+.sephora-title { 
+    font-size: 13px; 
+    font-weight: 500; 
+    color: #222; 
+    line-height: 1.3; 
+    margin-bottom: 6px; 
+    height: 36px; 
+    overflow: hidden; 
+}
+
+.sephora-variant { 
+    font-size: 12px; 
+    color: #666; 
+    margin-bottom: 8px; 
+}
+
+.sephora-price { 
+    font-size: 16px; 
+    font-weight: 800; 
+    color: #000; 
+    margin-bottom: 4px; 
+}
+
+.add-cart-btn-sephora { 
+    width: 100%; 
+    padding: 10px; 
+    background: #fff; 
+    color: #000; 
+    border: 1.5px solid #000; 
+    border-radius: 6px; 
+    font-size: 13px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: 0.2s; 
+    text-align: center; 
+}
+
+.add-cart-btn-sephora:hover { 
+    background: #000; 
+    color: #fff; 
+}
+
+/* ==========================================
+   5. BARĂ SERVICII (Icons Stil Sephora)
+   ========================================== */
+.services-bar { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px; 
+    background: #fff; 
+    padding: 30px 5%; 
+    border-top: 1px solid #eee; 
+    border-bottom: 1px solid #eee; 
+    margin-top: 50px; 
+}
+
+.service-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.service-item i { 
+    font-size: 24px; 
+    color: #111; 
+}
+
+.service-item h4 { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: #111; 
+}
+
+.service-item p { 
+    font-size: 11px; 
+    color: #777; 
+    margin-top: 2px; 
+}
+
+/* ==========================================
+   6. FAVORITE COMPACTE & COȘ DE CUMPĂRĂTURI
+   ========================================== */
+/* Favorite Compacte */
+.favorites-container { 
+    max-width: 800px; 
+    margin: 0 auto 50px auto; 
+    padding: 0 20px; 
+}
+
+.fav-compact-card { 
+    display: flex; 
+    align-items: center; 
+    background: #fff; 
+    border: 1px solid #eee; 
+    padding: 12px 20px; 
+    border-radius: 8px; 
+    margin-bottom: 12px; 
+    gap: 18px; 
+}
+
+.fav-compact-img { 
+    width: 80px; 
+    height: 80px; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    border: 1px solid #ddd; 
+}
+
+.fav-compact-details { 
+    flex: 1; 
+}
+
+.fav-compact-brand { 
+    font-size: 10px; 
+    color: #888; 
+    font-weight: 700; 
+}
+
+.fav-compact-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #111; 
+    margin: 2px 0; 
+}
+
+.fav-compact-price { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: #d4af37; 
+}
+
+.fav-compact-actions { 
+    display: flex; 
+    gap: 10px; 
+}
+
+/* Coș de Cumpărături */
+.cart-container { 
+    max-width: 900px; 
+    margin: 0 auto 50px auto; 
+    padding: 0 20px; 
+}
+
+.cart-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: #fff; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+}
+
+.cart-table th, 
+.cart-table td { 
+    padding: 15px; 
+    text-align: left; 
+    border-bottom: 1px solid #eee; 
+}
+
+.cart-table th { 
+    background: #111; 
+    color: #fff; 
+    font-size: 11px; 
+    letter-spacing: 1px; 
+}
+
+.cart-item-img { 
+    width: 60px; 
+    height: 60px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+}
+
+.cart-qty-btn { 
+    background: #eee; 
+    border: none; 
+    width: 25px; 
+    height: 25px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    border-radius: 3px; 
+}
+
+.cart-summary { 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin-top: 20px; 
+    text-align: right; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+}
+
+.gift-banner { 
+    background: #e8f5e9; 
+    border: 1px solid #2e7d32; 
+    color: #2e7d32; 
+    padding: 12px; 
+    border-radius: 6px; 
+    text-align: center; 
+    font-weight: 600; 
+    font-size: 13px; 
+    margin-top: 15px; 
+}
+
+/* ==========================================
+   7. PAGINĂ CONTACT (Inspirată din Sephora)
+   ========================================== */
+.contact-page-wrapper {
+    max-width: 1100px;
+    margin: 30px auto 60px auto;
+    padding: 0 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contact-main-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+/* Strip-ul cu cele 3 coloane de sus */
+.contact-info-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 25px 0;
+    margin-bottom: 45px;
+}
+
+.contact-info-col {
+    flex: 1;
+    font-size: 13px;
+    color: #222;
+    line-height: 1.6;
+}
+
+.contact-info-col.border-center {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 0 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Structura Formularului "Ai o Întrebare?" */
+.question-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+.form-grid-layout {
+    display: flex;
+    gap: 50px;
+}
+
+.form-left-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-field {
+    width: 100%;
+}
+
+.field-label {
+    font-size: 12px;
+    font-style: italic;
+    color: #777;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.field-label-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.custom-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: 8px 0;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.custom-input:focus {
+    border-bottom-color: #000;
+}
+
+.select-input {
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.textarea-box {
+    position: relative;
+    border: 1px solid #777;
+    height: 260px;
+    border-radius: 2px;
+}
+
+.textarea-box textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 13px;
+    font-style: italic;
+    resize: none;
+}
+
+.char-count {
+    position: absolute;
+    bottom: -22px;
+    left: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+}
+
+.form-action-btn {
+    margin-top: 40px;
+}
+
+/* Subsol legal și confidențialitate */
+.contact-legal-text {
+    margin-top: 50px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.conf-title {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.req-star {
+    font-size: 12px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.legal-desc {
+    font-size: 11px;
+    color: #666;
+}
+
+.legal-desc a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* ==========================================
+   8. FOOTER EXTINS STIL SEPHORA
+   ========================================== */
+.sephora-footer { 
+    background-color: #000; 
+    color: #fff; 
+    padding: 50px 5% 20px 5%; 
+    margin-top: 0; 
+}
+
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    gap: 30px; 
+    margin-bottom: 40px; 
+}
+
+.footer-col h4 { 
+    font-size: 12px; 
+    font-weight: 700; 
+    letter-spacing: 1.5px; 
+    color: #fff; 
+    margin-bottom: 15px; 
+}
+
+.footer-col ul { 
+    list-style: none; 
+}
+
+.footer-col ul li { 
+    margin-bottom: 8px; 
+}
+
+.footer-col ul li a { 
+    color: #888; 
+    font-size: 12px; 
+    text-decoration: none; 
+    transition: 0.2s; 
+}
+
+.footer-col ul li a:hover { 
+    color: #d4af37; 
+}
+
+.social-icons { 
+    display: flex; 
+    gap: 15px; 
+}
+
+.social-icons a { 
+    color: #fff; 
+    font-size: 18px; 
+    transition: 0.2s; 
+}
+
+.social-icons a:hover { 
+    color: #d4af37; 
+}
+
+.footer-copyright { 
+    border-top: 1px solid #222; 
+    text-align: center; 
+    padding-top: 20px; 
+    font-size: 11px; 
+    color: #666; 
+}
