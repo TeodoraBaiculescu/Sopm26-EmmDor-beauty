@@ -46,22 +46,24 @@
 
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('budget-grid');
-            grid.innerHTML = budgetProducts.map(p => `
-                <div class="product-card" data-id="${p.id}">
-                    <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
-                    <div class="product-img"><img src="${p.img}" alt="${p.name}"></div>
-                    <div class="product-info-sephora">
-                        <span class="sephora-brand">${p.brand}</span>
-                        <h4 class="sephora-title">${p.name}</h4>
-                        <div class="sephora-price">${p.price.toFixed(2).replace('.', ',')} Lei</div>
-                        <button class="add-cart-btn-sephora" onclick="addToCart(${p.id})">Adauga in cos</button>
-                    </div>
+       document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.getElementById('budget-grid');
+        grid.innerHTML = budgetProducts.map(p => `
+            <div class="product-card" data-id="${p.id}">
+                <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
+                <div class="product-img" onclick="goToProduct(${p.id})" style="cursor:pointer;">
+                    <img src="${p.img}" alt="${p.name}">
                 </div>
-            `).join('');
-            markActiveFavorites();
-        });
+                <div class="product-info-sephora">
+                    <span class="sephora-brand">${p.brand}</span>
+                    <<h4 class="sephora-title" onclick="goToProduct(${p.id})" style="cursor:pointer; text-decoration:underline;">${p.name}</h4>
+                    <div class="sephora-price">${p.price.toFixed(2).replace('.', ',')} Lei</div>
+                    <button class="add-cart-btn-sephora" onclick="addToCart(${p.id})">Adauga in cos</button>
+                </div>
+            </div>
+        `).join('');
+        markActiveFavorites();
+    });
     </script>
 </body>
 </html>
