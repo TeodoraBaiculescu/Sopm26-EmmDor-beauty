@@ -462,3 +462,35 @@ function removeFromCart(id) {
         renderCartPage();
     }
 }
+async function fetchBeautyAPI() {
+    const apiContainer = document.getElementById('api-data');
+    if (!apiContainer) return;
+
+    try {
+        // Apelăm un API public pentru produse din categoria beauty
+        const response = await fetch('https://dummyjson.com/products/category/beauty');
+        const data = await response.json();
+        
+        // Alegem un produs random din lista primită
+        const randomProduct = data.products[Math.floor(Math.random() * data.products.length)];
+        
+        // Afișăm imaginea, titlul și prețul în footer
+        apiContainer.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
+                <img src="${randomProduct.thumbnail}" alt="Recomandare" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; background: #fff;">
+                <div>
+                    <strong style="color: #d4af37; display: block; font-size: 13px; margin-bottom: 3px;">${randomProduct.title}</strong>
+                    <span style="font-size: 14px; font-weight: bold;">${randomProduct.price} $</span>
+                </div>
+            </div>
+            <div style="font-size: 10px; margin-top: 10px; opacity: 0.5;">*Generat live via API Extern</div>
+        `;
+    } catch (error) {
+        apiContainer.innerHTML = 'Recomandările nu sunt disponibile momentan.';
+        console.error("Eroare API:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBeautyAPI();
+});
