@@ -1,4 +1,4 @@
-```markdown
+
 <div align="center">
   <h1>✨ EmmDor Beauty ✨</h1>
   <p>O platformă e-commerce premium pentru produse de machiaj și îngrijire personală, construită cu un design elegant și funcționalități interactive.</p>
