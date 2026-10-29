@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizare comandă | EmmDor Beauty</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px 16px;
+      background: #faf7f7;
+      color: #30252b;
+      font-family: Arial, sans-serif;
+    }
+
+    .checkout {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      border: 1px solid #eadfe4;
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #9b647e;
+    }
+
+    h2 {
+      margin-top: 28px;
+      font-size: 19px;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8cbd1;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 12px 0;
+    }
+
+    .option input {
+      width: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .order-summary {
+      padding: 16px;
+      background: #faf5f7;
+      border-radius: 8px;
+      line-height: 1.8;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 6px;
+      background: #9b647e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #805067;
+    }
+
+    .back {
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+      color: #805067;
+    }
+
+    #message {
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 500px) {
+      .checkout {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="checkout">
+    <h1>EmmDor Beauty</h1>
+    <p style="text-align:center">Finalizează comanda ta</p>
+
+    <form id="checkoutForm">
+      <h2>Date de contact</h2>
+
+      <label for="name">Nume și prenume *</label>
+      <input id="name" name="name" required autocomplete="name">
+
+      <label for="email">Adresă de e-mail *</label>
+      <input id="email" name="email" type="email"
+             required autocomplete="email">
+
+      
+<label for="phoneCountry">Țara și prefixul telefonic *</label>
+<select id="phoneCountry" name="phoneCountry" required>
+  <option value="+40" data-length="9" selected>România (+40)</option>
+  <option value="+44" data-length="10">Regatul Unit (+44)</option>
+  <option value="+49" data-length="10">Germania (+49)</option>
+  <option value="+33" data-length="9">Franța (+33)</option>
+  <option value="+39" data-length="10">Italia (+39)</option>
+  <option value="+34" data-length="9">Spania (+34)</option>
+  <option value="+31" data-length="9">Țările de Jos (+31)</option>
+  <option value="+32" data-length="9">Belgia (+32)</option>
+  <option value="+43" data-length="10">Austria (+43)</option>
+  <option value="+1" data-length="10">SUA / Canada (+1)</option>
+  <option value="+373" data-length="8">Republica Moldova (+373)</option>
+</select>
+
+<label for="phone">Număr de telefon *</label>
+<input
+  id="phone"
+  name="phone"
+  type="tel"
+  required
+  inputmode="numeric"
+  autocomplete="tel-national"
+  placeholder="Ex.: 712345678"
+  aria-describedby="phoneError"
+>
+<p id="phoneError" style="color:#d93025;font-size:13px"></p>
+
+      <input id="phone" name="phone" type="tel"
+             required autocomplete="tel">
+
+      <h2>Adresă de livrare</h2>
+
+      <label for="county">Județ *</label>
+      <input id="county" name="county" required
+             autocomplete="address-level1">
+
+      <label for="city">Localitate *</label>
+      <input id="city" name="city" required
+             autocomplete="address-level2">
+
+      <label for="address">Stradă, număr, bloc, apartament *</label>
+      <textarea id="address" name="address" rows="3"
+                required autocomplete="street-address"></textarea>
+
+      <label for="postalCode">Cod poștal</label>
+      <input id="postalCode" name="postalCode"
+             autocomplete="postal-code">
+
+      <h2>Cont client</h2>
+
+      <label class="option">
+        <input type="radio" name="accountType"
+               value="guest" checked>
+        Comandă fără cont
+      </label>
+
+      <label class="option">
+        <input type="radio" name="accountType"
+               value="register">
+        Doresc să îmi creez un cont
+      </label>
+
+      <div id="passwordFields" class="hidden">
+        <label for="password">Parolă pentru cont *</label>
+        <input id="password" name="password"
+               type="password" minlength="8"
+               autocomplete="new-password">
+
+        <p style="font-size:13px;color:#6d5962">
+          Folosește o parolă de cel puțin 8 caractere.
+        </p>
+      </div>
+
+      
+<h2>Metoda de plată</h2>
+
+<label class="option">
+  <input type="radio" name="payment"
+         value="cash_on_delivery" checked>
+  Ramburs, la livrare
+</label>
+
+<label class="option">
+  <input type="radio" name="payment" value="card">
+  Plată cu cardul
+</label>
+
+<div id="cardFields" class="hidden">
+  <label for="cardNumber">Numărul cardului</label>
+  <input id="cardNumber" inputmode="numeric"
+         autocomplete="cc-number"
+         placeholder="1234 5678 9012 3456"
+         maxlength="19">
+
+  <label for="cardExpiry">Data expirării (LL/AA)</label>
+  <input id="cardExpiry" autocomplete="cc-exp"
+         placeholder="MM/YY" maxlength="5">
+
+  <label for="cardCvc">CVV</label>
+  <input id="cardCvc" inputmode="numeric"
+         autocomplete="cc-csc"
+         placeholder="123" maxlength="4">
+
+  <p style="font-size:13px;color:#805067">
+    Pentru plăți reale cu cardul trebuie integrat un procesator de plăți securizat.
+    Nu colecta și nu stoca datele cardului direct în magazin.
+  </p>
+</div>
+
+      <h2>Comanda ta</h2>
+
+      <div id="orderSummary" class="order-summary">
+        Se încarcă produsele din coș...
+      </div>
+
+      <button type="submit">TRIMITE COMANDA</button>
+
+      <p id="message" role="status"></p>
+    </form>
+
+    <a class="back" href="cos.html">Înapoi la coș</a>
+  </main>
+
+  <script>
+    const cartKey = "emmdor_cart";
+    const summary = document.getElementById("orderSummary");
+    const form = document.getElementById("checkoutForm");
+    const message = document.getElementById("message");
+    const passwordFields = document.getElementById("passwordFields");
+    const passwordInput = document.getElementById("password");
+
+    function getCart() {
+      try {
+        const cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+        return Array.isArray(cart) ? cart : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function renderSummary() {
+      const cart = getCart();
+
+      if (!cart.length) {
+        summary.textContent = "Coșul tău este gol.";
+        return;
+      }
+
+      let total = 0;
+      summary.innerHTML = "";
+
+      cart.forEach(item => {
+        const name = item.name || item.title || item.nume || "Produs";
+        const quantity = Number(item.quantity ?? item.qty ?? 1);
+        const price = Number(item.price ?? item.pret ?? 0);
+        const lineTotal = price * quantity;
+
+        total += lineTotal;
+
+        const line = document.createElement("div");
+        line.textContent =
+          `${name} × ${quantity} — ${lineTotal.toFixed(2)} lei`;
+        summary.appendChild(line);
+      });
+
+      const totalLine = document.createElement("strong");
+      totalLine.textContent = `Total: ${total.toFixed(2)} lei`;
+      summary.appendChild(document.createElement("hr"));
+      summary.appendChild(totalLine);
+    }
+
+    document.querySelectorAll(
+      'input[name="accountType"]'
+    ).forEach(input => {
+      input.addEventListener("change", () => {
+        const registering = input.checked &&
+                            input.value === "register";
+
+        if (!registering) {
+          const selected = document.querySelector(
+            'input[name="accountType"]:checked'
+          );
+          passwordFields.classList.toggle(
+            "hidden",
+            selected.value !== "register"
+          );
+          passwordInput.required = selected.value === "register";
+        } else {
+          passwordFields.classList.remove("hidden");
+          passwordInput.required = true;
+        }
+      });
+    });
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const phoneInput = document.getElementById("phone");
+const phoneDigits = phoneInput.value.replace(/\D/g, "");
+
+if (phoneDigits.length !== 10) {
+  phoneInput.setCustomValidity(
+    "Introdu un număr de telefon valid, format din 10 cifre."
+  );
+  phoneInput.reportValidity();
+  phoneInput.style.borderColor = "#d93025";
+  phoneInput.focus();
+  return;
+} else {
+  phoneInput.setCustomValidity("");
+  phoneInput.style.borderColor = "#d8cbd1";
+}
+      message.textContent = "";
+
+      const cart = getCart();
+
+      if (!cart.length) {
+        message.textContent = "Coșul este gol. Adaugă produse înainte de comandă.";
+        return;
+      }
+
+      message.textContent =
+        "Formularul este completat, dar trimiterea comenzii necesită conectarea la server.";
+
+      /*
+        În pasul următor conectăm formularul la server.
+        Nu afișăm o confirmare falsă și nu pretindem că
+        s-a trimis comanda sau e-mailul.
+      */
+    });
+
+    renderSummary(); const postalCodeInput = document.getElementById("postalCode");
+const cardFields = document.getElementById("cardFields");
+
+function setInvalid(input, invalid, message) {
+  input.setCustomValidity(invalid ? message : "");
+  input.style.borderColor = invalid ? "#d93025" : "#d8cbd1";
+}
+
+postalCodeInput.addEventListener("input", () => {
+  const value = postalCodeInput.value.trim();
+  const invalid = value !== "" && !/^\d{6}$/.test(value);
+
+  setInvalid(
+    postalCodeInput,
+    invalid,
+    "Codul poștal trebuie să conțină 6 cifre."
+  );
+});
+
+document.querySelectorAll('input[name="payment"]').forEach(input => {
+  input.addEventListener("change", () => {
+    const selected = document.querySelector(
+      'input[name="payment"]:checked'
+    ).value;
+
+    const cardSelected = selected === "card";
+    cardFields.classList.toggle("hidden", !cardSelected);
+
+    ["cardNumber", "cardExpiry", "cardCvc"].forEach(id => {
+      document.getElementById(id).required = cardSelected;
+    });
+  });
+});
+
+const phoneInput = document.getElementById("phone");
+const phoneCountry = document.getElementById("phoneCountry");
+const phoneError = document.getElementById("phoneError");
+
+function validatePhone() {
+  const digits = phoneInput.value.replace(/\D/g, "");
+  const option = phoneCountry.selectedOptions[0];
+  const expectedLength = Number(option.dataset.length);
+
+  const valid = digits.length === expectedLength;
+
+  phoneInput.setCustomValidity(
+    valid ? "" : `Introdu un număr național de ${expectedLength} cifre.`
+  );
+
+  phoneInput.style.borderColor = valid ? "#d8cbd1" : "#d93025";
+  phoneError.textContent = valid
+    ? ""
+    : `Numărul trebuie să conțină ${expectedLength} cifre pentru țara selectată.`;
+
+  return valid;
+}
+
+phoneInput.addEventListener("input", validatePhone);
+phoneCountry.addEventListener("change", () => {
+  phoneInput.value = "";
+  validatePhone();
+});
+
+  </script>
+</body>
+</html>
