@@ -89,7 +89,12 @@
 
                 <div class="cart-summary">
                     <h3>TOTAL: <span style="color:#d4af37;">${total.toFixed(2).replace('.', ',')} Lei</span></h3>
-                    <button class="add-cart-btn-sephora" style="width: auto; padding: 12px 30px; margin-top: 15px;" onclick="alert('Comandă plasată cu succes!')">FINALIZEAZĂ COMANDA</button>
+                   <button
+  class="add-cart-btn-sephora"
+  style="width: auto; padding: 12px 30px; margin-top: 15px;"
+  onclick="window.location.href='checkout.html'">
+  FINALIZEAZĂ COMANDA
+</button>
                 </div>
             `;
         }
