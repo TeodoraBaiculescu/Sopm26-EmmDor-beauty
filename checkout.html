@@ -249,104 +249,150 @@
     <a class="back" href="cos.html">Înapoi la coș</a>
   </main>
 
-  <script>
-    const cartKey = "emmdor_cart";
-    const summary = document.getElementById("orderSummary");
-    const form = document.getElementById("checkoutForm");
-    const message = document.getElementById("message");
-    const passwordFields = document.getElementById("passwordFields");
-    const passwordInput = document.getElementById("password");
+  
+<script>
+const cartKey = "emmdor_cart";
+const summary = document.getElementById("orderSummary");
+const form = document.getElementById("checkoutForm");
+const message = document.getElementById("message");
+const passwordFields = document.getElementById("passwordFields");
+const passwordInput = document.getElementById("password");
+const phoneInput = document.getElementById("phone");
+const phoneCountry = document.getElementById("phoneCountry");
+const phoneError = document.getElementById("phoneError");
+const postalCodeInput = document.getElementById("postalCode");
+const cardFields = document.getElementById("cardFields");
 
-    function getCart() {
-      try {
-        const cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
-        return Array.isArray(cart) ? cart : [];
-      } catch {
-        return [];
-      }
-    }
+function getCart() {
+  try {
+    const cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+    return Array.isArray(cart) ? cart : [];
+  } catch {
+    return [];
+  }
+}
 
-    function renderSummary() {
-      const cart = getCart();
+function renderSummary() {
+  const cart = getCart();
+  summary.replaceChildren();
 
-      if (!cart.length) {
-        summary.textContent = "Coșul tău este gol.";
-        return;
-      }
+  if (!cart.length) {
+    summary.textContent = "Coșul tău este gol.";
+    return;
+  }
 
-      let total = 0;
-      summary.innerHTML = "";
+  let total = 0;
 
-      cart.forEach(item => {
-        const name = item.name || item.title || item.nume || "Produs";
-        const quantity = Number(item.quantity ?? item.qty ?? 1);
-        const price = Number(item.price ?? item.pret ?? 0);
-        const lineTotal = price * quantity;
+  cart.forEach(item => {
+    const name = item.name || item.title || item.nume || "Produs";
+    const quantity = Number(item.quantity ?? item.qty ?? 1);
+    const price = Number(item.price ?? item.pret ?? 0);
+    const lineTotal = price * quantity;
 
-        total += lineTotal;
+    total += lineTotal;
 
-        const line = document.createElement("div");
-        line.textContent =
-          `${name} × ${quantity} — ${lineTotal.toFixed(2)} lei`;
-        summary.appendChild(line);
-      });
+    const line = document.createElement("div");
+    line.textContent =
+      `${name} × ${quantity} — ${lineTotal.toFixed(2)} lei`;
+    summary.appendChild(line);
+  });
 
-      const totalLine = document.createElement("strong");
-      totalLine.textContent = `Total: ${total.toFixed(2)} lei`;
-      summary.appendChild(document.createElement("hr"));
-      summary.appendChild(totalLine);
-    }
+  summary.appendChild(document.createElement("hr"));
 
-    document.querySelectorAll(
-      'input[name="accountType"]'
-    ).forEach(input => {
-      input.addEventListener("change", () => {
-        const registering = input.checked &&
-                            input.value === "register";
+  const totalLine = document.createElement("strong");
+  totalLine.textContent = `Total: ${total.toFixed(2)} lei`;
+  summary.appendChild(totalLine);
+}
 
-        if (!registering) {
-          const selected = document.querySelector(
-            'input[name="accountType"]:checked'
-          );
-          passwordFields.classList.toggle(
-            "hidden",
-            selected.value !== "register"
-          );
-          passwordInput.required = selected.value === "register";
-        } else {
-          passwordFields.classList.remove("hidden");
-          passwordInput.required = true;
-        }
-      });
-    });
+// Afișează câmpul parolei numai la selectarea creării unui cont.
+document.querySelectorAll('input[name="accountType"]').forEach(input => {
+  input.addEventListener("change", () => {
+    const registering =
+      document.querySelector('input[name="accountType"]:checked').value
+      === "register";
 
-    form.addEventListener
+    passwordFields.classList.toggle("hidden", !registering);
+    passwordInput.required = registering;
+  });
+});
 
+// Verifică lungimea numărului pentru țara selectată.
+function validatePhone() {
+  const digits = phoneInput.value.replace(/\D/g, "");
+  const expectedLength =
+    Number(phoneCountry.selectedOptions[0].dataset.length);
+
+  const valid = digits.length === expectedLength;
+
+  phoneInput.setCustomValidity(
+    valid ? "" : `Introdu un număr național de ${expectedLength} cifre.`
+  );
+
+  phoneInput.style.borderColor = valid ? "#d8cbd1" : "#d93025";
+  phoneError.textContent = valid
+    ? ""
+    : `Numărul trebuie să conțină ${expectedLength} cifre.`;
+
+  return valid;
+}
+
+phoneInput.addEventListener("input", validatePhone);
+
+phoneCountry.addEventListener("change", () => {
+  phoneInput.value = "";
+  validatePhone();
+});
+
+// Codul poștal românesc are 6 cifre dacă este completat.
+postalCodeInput.addEventListener("input", () => {
+  const value = postalCodeInput.value.trim();
+  const invalid = value !== "" && !/^\d{6}$/.test(value);
+
+  postalCodeInput.setCustomValidity(
+    invalid ? "Codul poștal trebuie să conțină 6 cifre." : ""
+  );
+  postalCodeInput.style.borderColor =
+    invalid ? "#d93025" : "#d8cbd1";
+});
+
+// Afișează câmpurile de card, dar nu colectează datele cardului.
+document.querySelectorAll('input[name="payment"]').forEach(input => {
+  input.addEventListener("change", () => {
+    const selected =
+      document.querySelector('input[name="payment"]:checked').value;
+
+    cardFields.classList.toggle("hidden", selected !== "card");
+  });
+});
+
+// Creează un fișier text pentru fiecare comandă.
 form.addEventListener("submit", event => {
   event.preventDefault();
+  message.textContent = "";
 
-  if (!form.reportValidity()) return;
-
-  if (typeof validatePhone === "function" && !validatePhone()) {
+  if (!validatePhone()) {
     phoneInput.reportValidity();
     phoneInput.focus();
     return;
   }
 
+  if (!form.reportValidity()) return;
+
   const cart = getCart();
 
   if (!cart.length) {
-    message.textContent = "Coșul este gol!";
+    message.textContent = "Coșul este gol. Adaugă produse înainte de comandă.";
     return;
   }
 
-  const data = Object.fromEntries(new FormData(form).entries());
+  const formData = Object.fromEntries(new FormData(form).entries());
 
-  // Nu salvăm parole sau date de card în fișierul text.
-  delete data.password;
-  delete data.cardNumber;
-  delete data.cardExpiry;
-  delete data.cardCvc;
+  // Plata cu cardul nu poate fi procesată fără un procesator real.
+  if (formData.payment === "card") {
+    message.textContent =
+      "Plata cu cardul nu este încă activă. Alege ramburs la livrare.";
+    return;
+  }
 
   let total = 0;
 
@@ -354,34 +400,38 @@ form.addEventListener("submit", event => {
     const name = item.name || item.title || item.nume || "Produs";
     const quantity = Number(item.quantity ?? item.qty ?? 1);
     const price = Number(item.price ?? item.pret ?? 0);
-    total += price * quantity;
+    const lineTotal = price * quantity;
 
-    return `${name} x ${quantity} — ${(price * quantity).toFixed(2)} lei`;
+    total += lineTotal;
+
+    return `${name} × ${quantity} — ${lineTotal.toFixed(2)} lei`;
   });
 
   const orderId = "EMD-" + Date.now();
 
   const content = [
-    "EMMDOR BEAUTY — COMANDĂ NOUĂ",
+    "EMMDOR BEAUTY — COMANDĂ",
     "Număr comandă: " + orderId,
     "Data: " + new Date().toLocaleString("ro-RO"),
     "",
     "DATE CLIENT",
-    "Nume: " + (data.name || ""),
-    "Email: " + (data.email || ""),
-    "Telefon: " + (data.phoneCountry || "+40") + " " + (data.phone || ""),
-    "Județ: " + (data.county || ""),
-    "Localitate: " + (data.city || ""),
-    "Adresă: " + (data.address || ""),
-    "Cod poștal: " + (data.postalCode || ""),
+    "Nume: " + (formData.name || ""),
+    "E-mail: " + (formData.email || ""),
+    "Telefon: " + (formData.phoneCountry || "+40") +
+      " " + (formData.phone || ""),
+    "Județ: " + (formData.county || ""),
+    "Localitate: " + (formData.city || ""),
+    "Adresă: " + (formData.address || ""),
+    "Cod poștal: " + (formData.postalCode || ""),
     "",
     "PRODUSE",
     ...products,
     "",
     "TOTAL: " + total.toFixed(2) + " lei",
-    "Plată: " + (data.payment === "card" ? "Card (neprocesată)" : "Ramburs"),
+    "Plată: Ramburs la livrare",
+    "Status: Exportată în fișier text",
     "",
-    "Status: Comandă exportată local"
+    "Notă: Contul de client nu este creat automat."
   ].join("\r\n");
 
   const blob = new Blob(
@@ -397,101 +447,17 @@ form.addEventListener("submit", event => {
   document.body.appendChild(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 
   message.textContent =
-    "Fișierul comenzii a fost descărcat. Îl poți deschide cu Notepad.";
+    "Fișierul comenzii a fost descărcat. Îl găsești în Descărcări și îl poți deschide cu Notepad.";
 
-  localStorage.removeItem("emmdor_cart");
+  localStorage.removeItem(cartKey);
   renderSummary();
 });
 
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.error || "Comanda nu a putut fi salvată.");
-    }
-
-    localStorage.removeItem("emmdor_cart");
-    message.textContent =
-      `Comanda a fost înregistrată! Număr comandă: ${result.orderId}`;
-
-    renderSummary();
-    form.reset();
-  } catch (error) {
-    message.textContent =
-      error.message || "Nu am putut contacta serverul.";
-  } finally {
-    button.disabled = false;
-    button.textContent = "TRIMITE COMANDA";
-  }
-});
-
-
-    renderSummary(); const postalCodeInput = document.getElementById("postalCode");
-const cardFields = document.getElementById("cardFields");
-
-function setInvalid(input, invalid, message) {
-  input.setCustomValidity(invalid ? message : "");
-  input.style.borderColor = invalid ? "#d93025" : "#d8cbd1";
-}
-
-postalCodeInput.addEventListener("input", () => {
-  const value = postalCodeInput.value.trim();
-  const invalid = value !== "" && !/^\d{6}$/.test(value);
-
-  setInvalid(
-    postalCodeInput,
-    invalid,
-    "Codul poștal trebuie să conțină 6 cifre."
-  );
-});
-
-document.querySelectorAll('input[name="payment"]').forEach(input => {
-  input.addEventListener("change", () => {
-    const selected = document.querySelector(
-      'input[name="payment"]:checked'
-    ).value;
-
-    const cardSelected = selected === "card";
-    cardFields.classList.toggle("hidden", !cardSelected);
-
-    ["cardNumber", "cardExpiry", "cardCvc"].forEach(id => {
-      document.getElementById(id).required = cardSelected;
-    });
-  });
-});
-
-const phoneInput = document.getElementById("phone");
-const phoneCountry = document.getElementById("phoneCountry");
-const phoneError = document.getElementById("phoneError");
-
-function validatePhone() {
-  const digits = phoneInput.value.replace(/\D/g, "");
-  const option = phoneCountry.selectedOptions[0];
-  const expectedLength = Number(option.dataset.length);
-
-  const valid = digits.length === expectedLength;
-
-  phoneInput.setCustomValidity(
-    valid ? "" : `Introdu un număr național de ${expectedLength} cifre.`
-  );
-
-  phoneInput.style.borderColor = valid ? "#d8cbd1" : "#d93025";
-  phoneError.textContent = valid
-    ? ""
-    : `Numărul trebuie să conțină ${expectedLength} cifre pentru țara selectată.`;
-
-  return valid;
-}
-
-phoneInput.addEventListener("input", validatePhone);
-phoneCountry.addEventListener("change", () => {
-  phoneInput.value = "";
-  validatePhone();
-});
-
-  </script>
+renderSummary();
+</script>
 </body>
 </html>
