@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isRegistering = false;
 
-    screen.style.display = "flex";
+    
 
     switchBtn.addEventListener("click", () => {
         isRegistering = !isRegistering;
