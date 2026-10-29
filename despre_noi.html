@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmmDor Beauty | Despre Noi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>✨ TRANSPORT GRATUIT PESTE 200 LEI | CADOU SPRÂNCENE LA 500 LEI ✨</span>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-badge">ED</div>
+                <div class="logo-text">
+                    <span class="brand-name">EMMDOR</span>
+                    <span class="brand-sub">BEAUTY</span>
+                </div>
+            </a>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Caută brand, produs..." autocomplete="off">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="search-results-dropdown" id="search-results"></div>
+            </div>
+
+            <div class="header-icons">
+                <a href="favorite.html" title="Favorite"><i class="fa-regular fa-heart"></i><span class="badge" id="fav-count">0</span></a>
+                <a href="cos.html" title="Coș"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cart-count">0</span></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="produse.html">TOATE PRODUSELE</a></li>
+                <li><a href="branduri_accesibile.html">BRANDURI ACCESIBILE</a></li>
+                <li><a href="branduri_lux.html">BRANDURI LUX</a></li>
+                <li><a href="promotii.html" class="sale-link">PROMOȚII %</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BANNER HERO DESPRE NOI -->
+    <section class="hero-banner" style="background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200') center/cover no-repeat;">
+        <div class="hero-overlay">
+            <span class="hero-tag"><i class="fa-solid fa-gem"></i> POVESTEA NOASTRĂ</span>
+            <h1>DESPRE EMMDOR BEAUTY</h1>
+            <p>Pasiune, visuri mari și dăruire – povestea a trei fete unite de dragostea pentru frumusețe</p>
+        </div>
+    </section>
+
+    <!-- CONȚINUT PRINCIPAL -->
+    <div style="max-width: 900px; margin: 0 auto 60px auto; padding: 0 20px; line-height: 1.8; color: #333;">
+        
+        <div style="background: #fff; padding: 40px; border-radius: 8px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 40px;">
+            <h2 style="font-family: 'Cinzel', serif; font-size: 24px; color: #000; margin-bottom: 20px; text-align: center;">TREI FETE, UN SINGUR VIS</h2>
+            <p style="font-size: 15px; margin-bottom: 20px;">
+                <strong>EmmDor Beauty</strong> a luat naștere din prietenia și ambiția a trei fete la început de drum, unite de o pasiune imensă pentru universul machiajului și al îngrijirii tenului. Am pornit la drum cu resurse modeste, dar cu o viziune clară: să creăm un spațiu primitor și elegant, unde fiecare femeie să se simtă pusă în valoare, răsfățată și înțeleasă.
+            </p>
+            <p style="font-size: 15px; margin-bottom: 20px;">
+                Ceea ce a început ca o serie de discuții noaptea târziu despre texturi, nuanțe și formule preferate s-a transformat rapid într-un proiect hibrid unic. Ne-am dorit să aducem la un loc atât produsele accesibile ideale pentru rutina zilnică (Essence, Catrice, L'Oréal, Maybelline), cât și comorile exclusiviste de lux (Dior, Huda Beauty, Rare Beauty, Fenty Beauty, YSL) la care visăm cu toate.
+            </p>
+            <p style="font-size: 15px; margin-bottom: 0; font-style: italic; color: #d4af37; font-weight: 600; text-align: center;">
+                „Pentru noi, EmmDor nu este doar un magazin, ci dovada că atunci când pui suflet, muncă și sinceritate în ceea ce faci, visurile devin realitate.”
+            </p>
+        </div>
+
+        <!-- VALORILE NOASTRE -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 50px;">
+            <div style="background: #fff; border: 1px solid #eee; padding: 25px; border-radius: 8px; text-align: center;">
+                <i class="fa-solid fa-heart" style="font-size: 30px; color: #d4af37; margin-bottom: 15px;"></i>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 16px; margin-bottom: 10px;">Pasiune & Sinceritate</h3>
+                <p style="font-size: 13px; color: #666;">Alegem fiecare produs cu atenție și testăm totul din dorința de a-ți oferi doar recomandări sincere.</p>
+            </div>
+
+            <div style="background: #fff; border: 1px solid #eee; padding: 25px; border-radius: 8px; text-align: center;">
+                <i class="fa-solid fa-hands-holding-heart" style="font-size: 30px; color: #d4af37; margin-bottom: 15px;"></i>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 16px; margin-bottom: 10px;">Aproape de Tine</h3>
+                <p style="font-size: 13px; color: #666;">Fiind la început de drum, prețuim fiecare comandă și mesaj primit. Suntem mereu aici să te ajutăm!</p>
+            </div>
+
+            <div style="background: #fff; border: 1px solid #eee; padding: 25px; border-radius: 8px; text-align: center;">
+                <i class="fa-solid fa-crown" style="font-size: 30px; color: #d4af37; margin-bottom: 15px;"></i>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 16px; margin-bottom: 10px;">Calitate Fără Compromis</h3>
+                <p style="font-size: 13px; color: #666;">Toate produsele noastre sunt 100% originale, aduse din surse verificate și sigure.</p>
+            </div>
+        </div>
+
+        <!-- CONCEPTUL DIN BRAȘOV -->
+        <div style="background: #000; color: #fff; padding: 40px; border-radius: 8px; border: 1px solid #d4af37; display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+            <div style="flex: 1; min-width: 280px;">
+                <span style="color: #d4af37; font-size: 11px; font-weight: 700; letter-spacing: 2px;">LOCAȚIA NOASTRĂ DIN BRAȘOV</span>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 22px; color: #d4af37; margin: 10px 0 15px 0;">Emma Carabelea Beauty Lounge</h3>
+                <p style="font-size: 13px; color: #ddd; line-height: 1.6; margin-bottom: 15px;">
+                    Visul nostru a prins contur și în plan fizic, în Brașov, Cartier Coresi (Str. Zaharia Stancu Nr. 1). Aici te așteptăm cu drag în salonul nostru hibrid, unde îți oferim cadou pachetul complet de Pensat, Laminare și Vopsit Sprâncene la comenzi online de peste 500 LEI.
+                </p>
+                <a href="emma_carabelea_lounge.html" class="hero-btn" style="padding: 10px 20px; font-size: 11px;">AFLĂ DETALII DESPRE SALON</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER STIL SEPHORA -->
+    <footer class="sephora-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AJUTOR & SUPORT</h4>
+                <ul>
+                    <li><a href="contact.html">Contact & Întrebări Frecvente</a></li>
+                    <li><a href="modalitati_plata.html">Modalități de plată</a></li>
+                    <li><a href="conditii_livrare.html">Condiții de livrare</a></li>
+                    <li><a href="politica_retur.html">Politica de retur</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>DESPRE EMMDOR</h4>
+                <ul>
+                    <li><a href="despre_noi.html">Despre EmmDor Beauty</a></li>
+                    <li><a href="emma_carabelea_lounge.html">Emma Carabelea Beauty Lounge</a></li>
+                    <li><a href="cariere.html">Cariere</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>INSPIRAȚIE</h4>
+                <ul>
+                    <li><a href="branduri_lux.html">Branduri de Lux</a></li>
+                    <li><a href="branduri_accesibile.html">Branduri Accesibile</a></li>
+                    <li><a href="promotii.html">Ghid Promoții</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>URMĂREȘTE-NE ȘI RECOMANDĂRI</h4>
+                <div class="social-icons" style="margin-bottom: 15px;">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <h4 style="margin-top: 15px; font-size: 11px;">RECOMANDAREA ZILEI</h4>
+                <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-top: 5px;">
+                    <div id="api-data" style="font-size: 12px; color: #ccc;">Se caută recomandarea... <i class="fa-solid fa-spinner fa-spin"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 EmmDor Beauty & Emma Carabelea Lounge. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
