@@ -51,7 +51,7 @@
     <div class="contact-page-wrapper">
         <h1 class="contact-main-title">CONTACTEAZĂ-NE</h1>
 
-        <!-- Secțiunea Header Contact cu 3 Coloane -->
+        <!-- Header Contact 3 Coloane -->
         <div class="contact-info-strip">
             <div class="contact-info-col">
                 <strong>Program relații clienți:</strong><br>
@@ -70,47 +70,47 @@
             </div>
         </div>
 
-        <!-- Secțiunea Formular "Ai o Întrebare?" -->
+        <!-- Formular -->
         <div class="contact-form-section">
             <h2 class="question-title">Ai o Întrebare?</h2>
 
-            <form onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes!');">
+            <form id="emmdor-contact-form">
                 <div class="form-grid-layout">
-                    <!-- Coloana Stânga: Câmpuri -->
+                    <!-- Coloana Stânga -->
                     <div class="form-left-col">
                         <div class="floating-field">
                             <label class="field-label">Solicitare*</label>
-                            <select required class="custom-input select-input">
+                            <select required class="custom-input select-input" id="solicitare-select">
                                 <option value="" disabled selected>Selecteaza o optiune</option>
-                                <option value="1">Comanda mea / Urmareste</option>
-                                <option value="2">Comanda mea / Anulare sau rambursare</option>
-                                <option value="3">Program de fidelitate</option>
-                                <option value="4">Produse sau oferte</option>
-                                <option value="5">Contul meu / acces</option>
-                                <option value="6">Datele mele personale</option>
-                                <option value="7">Magazine EmmDor Beauty</option>
-                                <option value="8">Altele</option>
+                                <option value="Comanda mea / Urmareste">Comanda mea / Urmareste</option>
+                                <option value="Comanda mea / Anulare sau rambursare">Comanda mea / Anulare sau rambursare</option>
+                                <option value="Program de fidelitate">Program de fidelitate</option>
+                                <option value="Produse sau oferte">Produse sau oferte</option>
+                                <option value="Contul meu / acces">Contul meu / acces</option>
+                                <option value="Datele mele personale">Datele mele personale</option>
+                                <option value="Magazine EmmDor Beauty">Magazine EmmDor Beauty</option>
+                                <option value="Altele">Altele</option>
                             </select>
                         </div>
 
                         <div class="floating-field">
-                            <input type="text" placeholder="Prenume*" required class="custom-input">
+                            <input type="text" id="prenume-input" placeholder="Prenume*" required class="custom-input">
                         </div>
 
                         <div class="floating-field">
-                            <input type="text" placeholder="Nume*" required class="custom-input">
+                            <input type="text" id="nume-input" placeholder="Nume*" required class="custom-input">
                         </div>
 
                         <div class="floating-field">
-                            <input type="email" placeholder="Email*" required class="custom-input">
+                            <input type="email" id="email-input" placeholder="Email*" required class="custom-input">
                         </div>
 
                         <div class="floating-field">
-                            <input type="text" placeholder="Cod postal" class="custom-input">
+                            <input type="text" id="postal-input" placeholder="Cod postal" class="custom-input">
                         </div>
                     </div>
 
-                    <!-- Coloana Dreapta: Textarea Explicații -->
+                    <!-- Coloana Dreapta -->
                     <div class="form-right-col">
                         <label class="field-label-text">subiectul solicitarii *</label>
                         <div class="textarea-box">
@@ -177,13 +177,55 @@
 
     <script src="script.js"></script>
     <script>
-        // Contor caractere pentru subiectul solicitării
+        // Contor caractere
         const textArea = document.getElementById('message-area');
         const counter = document.getElementById('char-counter');
         if (textArea && counter) {
             textArea.addEventListener('input', () => {
                 const remaining = 1000 - textArea.value.length;
                 counter.innerText = `${remaining}/1000`;
+            });
+        }
+
+        // Trimitere & Salvare Solicitare în fișier separat
+        const contactForm = document.getElementById('emmdor-contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const selectOpt = document.getElementById('solicitare-select').value;
+                const prenume = document.getElementById('prenume-input').value;
+                const nume = document.getElementById('nume-input').value;
+                const email = document.getElementById('email-input').value;
+                const codPostal = document.getElementById('postal-input').value;
+                const mesaj = textArea.value;
+                const dataTrimiterii = new Date().toLocaleString('ro-RO');
+
+                // Textul complet al solicitării
+                const textFisier = `========================================\n` +
+                                   `SOLICITARE EMMDOR BEAUTY - ${dataTrimiterii}\n` +
+                                   `========================================\n` +
+                                   `Tip Solicitare: ${selectOpt}\n` +
+                                   `Nume complet : ${prenume} ${nume}\n` +
+                                   `Email        : ${email}\n` +
+                                   `Cod Poștal   : ${codPostal || 'Nespecificat'}\n` +
+                                   `----------------------------------------\n` +
+                                   `Mesaj / Explicație:\n${mesaj}\n` +
+                                   `========================================\n`;
+
+                // 1. Descarcă automat un fișier text separat cu solicitarea
+                const blob = new Blob([textFisier], { type: 'text/plain;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Solicitare_${nume}_${prenume}.txt`;
+                link.click();
+
+                // 2. Afișează clientului doar mesajul de succes
+                alert('Solicitarea a fost încărcată cu succes!');
+
+                // Resetare formular
+                contactForm.reset();
+                counter.innerText = '1000/1000';
             });
         }
     </script>
