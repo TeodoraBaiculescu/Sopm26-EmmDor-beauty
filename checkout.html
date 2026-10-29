@@ -323,20 +323,10 @@
 
     form.addEventListener("submit", async event => {
       event.preventDefault();
-      const phoneInput = document.getElementById("phone");
-const phoneDigits = phoneInput.value.replace(/\D/g, "");
-
-if (phoneDigits.length !== 10) {
-  phoneInput.setCustomValidity(
-    "Introdu un număr de telefon valid, format din 10 cifre."
-  );
+      if (!validatePhone()) {
   phoneInput.reportValidity();
-  phoneInput.style.borderColor = "#d93025";
   phoneInput.focus();
   return;
-} else {
-  phoneInput.setCustomValidity("");
-  phoneInput.style.borderColor = "#d8cbd1";
 }
       message.textContent = "";
 
