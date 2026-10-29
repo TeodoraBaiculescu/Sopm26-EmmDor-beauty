@@ -55,7 +55,7 @@
             <h1>LAMINARE & STYLING SPRÂNCENE CADOU</h1>
             <p>Efectuează o comandă de peste <strong>500 LEI</strong> și primești gratuit pachetul complet:</p>
             <div class="hero-perks">✨ Pensat + Laminat + Vopsit Sprâncene ✨</div>
-            <p class="hero-lounge">Serviciu oferit în cadrul salonului <strong>Emma Carabelea Beauty Lounge</strong> (Brașov Coresi)</p>
+            <p class="hero-lounge">Serviciu oferit în cadrul salonului <strong>Emma Carabelea Beauty Lounge</strong></p>
             <a href="produse.html" class="hero-btn">DESCOPERĂ PRODUSELE</a>
         </div>
     </section>
@@ -113,17 +113,17 @@
                 <h4>AJUTOR & SUPORT</h4>
                 <ul>
                     <li><a href="contact.html">Contact & Întrebări Frecvente</a></li>
-                    <li><a href="modalitati_plata.html">Modalități de plată</a></li>
-                    <li><a href="conditii_livrare.html">Condiții de livrare</a></li>
-                    <li><a href="politica_retur.html">Politica de retur</a></li>
+                    <li><a href="#">Modalități de plată</a></li>
+                    <li><a href="#">Condiții de livrare</a></li>
+                    <li><a href="#">Politica de retur</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>DESPRE EMMDOR</h4>
                 <ul>
-                    <li><a href="despre_noi.html">Despre EmmDor Beauty</a></li>
-                    <li><a href="emma_carabelea_lounge.html">Emma Carabelea Beauty Lounge</a></li>
-                    <li><a href="cariere.html">Cariere</a></li>
+                    <li><a href="#">Despre EmmDor Beauty</a></li>
+                    <li><a href="#">Emma Carabelea Beauty Lounge</a></li>
+                    <li><a href="#">Cariere</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -135,16 +135,12 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>URMĂREȘTE-NE ȘI RECOMANDĂRI</h4>
-                <div class="social-icons" style="margin-bottom: 15px;">
-                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-                <h4 style="margin-top: 15px; font-size: 11px;">RECOMANDAREA ZILEI</h4>
-                <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-top: 5px;">
-                    <div id="api-data" style="font-size: 12px; color: #ccc;">Se caută recomandarea... <i class="fa-solid fa-spinner fa-spin"></i></div>
+                <h4>URMĂREȘTE-NE</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -154,10 +150,12 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const promoGrid = document.getElementById('home-promo-grid');
-            if (promoGrid && typeof promoProducts !== 'undefined') {
+            if (promoGrid) {
                 promoGrid.innerHTML = promoProducts.slice(0, 4).map(p => `
                     <div class="product-card" data-id="${p.id}">
                         <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
@@ -177,7 +175,7 @@
             }
 
             const luxGrid = document.getElementById('home-lux-grid');
-            if (luxGrid && typeof luxuryProducts !== 'undefined') {
+            if (luxGrid) {
                 luxGrid.innerHTML = luxuryProducts.slice(0, 4).map(p => `
                     <div class="product-card" data-id="${p.id}">
                         <button class="fav-btn" onclick="toggleFavorite(${p.id})"><i class="fa-regular fa-heart"></i></button>
@@ -192,9 +190,7 @@
                     </div>
                 `).join('');
             }
-            if (typeof markActiveFavorites === 'function') {
-                markActiveFavorites();
-            }
+            markActiveFavorites();
         });
     </script>
 </body>
