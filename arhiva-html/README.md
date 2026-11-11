@@ -32,4 +32,25 @@ A gestionat sistemul de date din spatele aplicației . A implementat randarea di
 * **Coș & Favorite:** Sistem complet funcțional cu actualizare în timp real a prețurilor, cantităților și a badge-urilor din meniul de navigare.
 * **Live Search:** Bară de căutare inteligentă care filtrează instantaneu produsele după nume sau brand.
 
+## ▶️ Cum rulezi versiunea veche (HTML)
+
+Aceasta este versiunea inițială, statică (HTML + CSS + JavaScript), păstrată pentru comparație.
+
+```powershell
+cd "C:\Users\ACER\Desktop\an 4\SOPM\Sopm26-EmmDor-beauty\arhiva-html"
+node server.js
 ```
+
+Apoi deschide **http://localhost:4000** în browser.
+
+> Nu deschide fișierele `.html` prin dublu-click: imaginile și scripturile au nevoie de un server HTTP.
+
+## 📁 Ce conține
+
+- `*.html` – paginile site-ului vechi
+- `style.css` – stilurile
+- `script.js` – datele produselor și logica (DOM, coș, favorite, căutare)
+- `*.jpg` – imaginile produselor
+- `server.js` – server static minimal pentru rulare locală
+- `auth.js` – experiment Supabase, nefolosit de pagini (păstrat pentru istoric)
+
