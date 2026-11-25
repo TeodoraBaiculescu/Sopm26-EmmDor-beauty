@@ -14,7 +14,6 @@ Magazin online de machiaj și îngrijire personală, dezvoltat ca proiect univer
 | 2 | **Minim 3 componente** | 20 de componente în `aplicatia-parcel/src/components/` (`Layout`, `Acasa`, `Produse`, `ProductCard`, `ProdusDetaliu`, `Cos`, `Checkout`, `Favorite`, `Contact`, `CatalogNote` etc.), date transmise prin `props` și callback-uri. |
 | 3 | **Consum de date dintr-un API** | `aplicatia-parcel/src/api/beautyFacts.js` — `fetch` către API-ul public **Open Beauty Facts**, folosit în `Layout.jsx`, `CatalogNote.jsx` și `ProdusDetaliu.jsx`, cu stări *loading / error / gol*, debounce și `AbortController`. |
 
-Laboratorul 4 (JSX, `useState`, formulare controlate, liste cu `key`, evenimente) și laboratorul 5 (rutare, `localStorage`, API, verificare și build de producție) sunt acoperite în codul aplicației React.
 
 ## 📁 Structura repozitoriului
 
@@ -50,7 +49,6 @@ Sopm26-EmmDor-beauty/
 Din **rădăcina proiectului** (scripturile `dev`/`build`/`preview` apelează aplicația din `aplicatia-parcel`):
 
 ```powershell
-cd "C:\Users\ACER\Desktop\an 4\SOPM\Sopm26-EmmDor-beauty"
 npm run dev
 ```
 
@@ -71,7 +69,6 @@ Build-ul este generat în `dist/`, iar `npm run preview` îl servește la `http:
 ### Versiunea statică (arhivă)
 
 ```powershell
-cd "C:\Users\ACER\Desktop\an 4\SOPM\Sopm26-EmmDor-beauty\arhiva-html"
 node server.js
 ```
 
