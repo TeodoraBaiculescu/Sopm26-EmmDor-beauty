@@ -1,0 +1,14 @@
+{
+  "name": "emmdor-beauty",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EmmDor Beauty - proiect SOPM 2026 (SPA React)",
+  "scripts": {
+    "dev": "npm --prefix aplicatia-parcel run dev",
+    "build": "npm --prefix aplicatia-parcel run build",
+    "preview": "npm --prefix aplicatia-parcel run preview"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.18.7"
+  }
+}

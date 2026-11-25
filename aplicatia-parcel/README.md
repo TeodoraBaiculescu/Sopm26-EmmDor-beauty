@@ -1,56 +1,83 @@
-
 <div align="center">
-  <h1>✨ EmmDor Beauty ✨</h1>
-  <p>O platformă e-commerce premium pentru produse de machiaj și îngrijire personală, construită cu un design elegant și funcționalități interactive.</p>
+
+# ✨ EmmDor Beauty — aplicația web React
+
+Magazin online de machiaj și îngrijire personală, construit ca **SPA React** pe baza laboratoarelor 4 și 5 SOPM, adaptat pentru site-ul EmmDor Beauty.
+
 </div>
 
-## 📌 Despre Proiect
-Glow Studio este un magazin online complet funcțional, dezvoltat ca proiect universitar, care simulează experiența de shopping a marilor retaileri de beauty. Aplicația permite explorarea produselor pe categorii (Lux, Accesibil, Promoții), selectarea precisă a nuanțelor dorite, salvarea produselor favorite și gestionarea unui coș de cumpărături complet interactiv. 
+## 🎯 Cerințe acoperite
 
-Toate datele sunt gestionate prinamic cu JavaScript și stocate local (LocalStorage), oferind o experiență fluidă, fără timpi de încărcare între acțiuni.
+| Cerință | Unde se găsește în cod |
+| --- | --- |
+| **1. Structură SPA** | `src/App.jsx` definește `<BrowserRouter>` cu `<Routes>`; `src/components/Layout.jsx` conține header/footer comuni și `<Outlet />` pentru pagini. Navigarea nu reîncarcă pagina. |
+| **2. Minim 3 componente** | 20 de componente în `src/components/` (`Layout`, `Acasa`, `Produse`, `ProductCard`, `ProdusDetaliu`, `Cos`, `Checkout`, `Favorite`, `Contact`, `CatalogNote` etc.), plus hook-ul `useLocalStorage`. Datele circulă prin `props`, iar modificările prin callback-uri (`addToCart`, `toggleFavorite`). |
+| **3. Consum de date dintr-un API** | `src/api/beautyFacts.js` folosește `fetch` către API-ul public **Open Beauty Facts** (fără cheie). Este consumat în `Layout.jsx` (sugestii live în căutare), `CatalogNote.jsx` (numărul de produse pe brand) și `ProdusDetaliu.jsx` (catalogul brandului). Sunt tratate stările *loading / error / gol*, cu `AbortController` și debounce. |
 
-## 🛠️ Tehnologii Utilizate
-* **HTML5 & CSS3:** Structură semantică, design fluid, animații subtile și o paletă de culori rafinată.
-* **JavaScript (Vanilla JS):** Redare dinamică a componentelor (produse, nuanțe, recenzii), căutare live, logică matematică pentru coșul de cumpărături și manipulare DOM.
-* **Git & GitHub:** Controlul versiunilor și colaborarea în echipă.
+Din laboratorul 4/5 sunt acoperite și: JSX, componente funcționale, `props`, `useState`/`useEffect`, formulare controlate cu validare, liste cu `key` stabil, actualizări imutabile ale stării, persistență în `localStorage`, rute React Router, stilizare responsivă și accesibilă, precum și build de producție.
 
-## 👥 Echipa și Contribuții
-Proiectul a fost dezvoltat de o echipă formată din 3 persoane, sarcinile fiind împărțite pentru a acoperi toate aspectele unui proces complet de front-end development:
+## 🛠️ Tehnologii
 
-* **Baiculescu Teodora (UI/UX & Core Architecture)** 
-S-a ocupat de arhitectura generală a aplicației, construind structura și design-ul  paginilor. A gestionat stilizarea vizuală (CSS), layout-urile, integrarea elementelor de brand și încărcarea resurselor media (imaginile) pe server.
+* **React 19** + **React DOM** (interfață, stare, evenimente)
+* **React Router DOM 6** (rutare SPA, 16 pagini + pagină 404)
+* **Parcel 2** (bundler pentru dezvoltare și build)
+* **HTML5 / CSS3** (layout responsiv, animații, contrast accesibil)
+* **Open Beauty Facts API** (date externe, `fetch` + cache în memorie)
+* **LocalStorage** (coș și favorite, chei `emmdor:cart` / `emmdor:favorites`)
 
-* **Carabelea Emma (User Flow & Cart Systems)** 
-A dezvoltat logica și interfața secțiunii de Coș de Cumpărături, asigurându-se că utilizatorii pot finaliza pașii de comandă. Totodată, a implementat secțiunea de cont și formularele de autentificare/login pentru utilizatori.
+## 📁 Structură
 
-* **Nițu Delia(Dynamic Data & Component Logic)** 
-A gestionat sistemul de date din spatele aplicației . A implementat randarea dinamică a produselor, a definit variantele de culoare și a stabilizat interacțiunile de click pe cardurile produselor.
-
-## ✨ Funcționalități Cheie
-* **Catalog Interactiv:** Produse împărțite logic în funcție de brand și preț.
-* **Selector de Nuanțe:** Fiecare produs deține un paletar vizual de culori din care utilizatorul poate alege varianta potrivită înainte de adăugarea în coș.
-* **Coș & Favorite:** Sistem complet funcțional cu actualizare în timp real a prețurilor, cantităților și a badge-urilor din meniul de navigare.
-* **Live Search:** Bară de căutare inteligentă care filtrează instantaneu produsele după nume sau brand.
-
-## ▶️ Cum rulezi versiunea veche (HTML)
-
-Aceasta este versiunea inițială, statică (HTML + CSS + JavaScript), păstrată pentru comparație.
-
-```powershell
-cd "C:\Users\ACER\Desktop\an 4\SOPM\Sopm26-EmmDor-beauty\arhiva-html"
-node server.js
+```text
+aplicatia-parcel/
+├── index.html              # elementul #root
+├── package.json            # scripturile dev / build / preview
+├── serve-dist.cjs          # server static pentru dist/ (cu fallback SPA)
+├── style.css               # stilurile aplicației
+└── src/
+    ├── main.jsx            # createRoot
+    ├── App.jsx             # starea globală + rutele SPA
+    ├── api/beautyFacts.js  # integrarea API-ului public
+    ├── hooks/useLocalStorage.js
+    ├── utils/format.js
+    ├── assets/             # imaginile produselor
+    └── components/         # cele 20 de componente React
 ```
 
-Apoi deschide **http://localhost:4000** în browser.
+## ▶️ Cum rulezi
 
-> Nu deschide fișierele `.html` prin dublu-click: imaginile și scripturile au nevoie de un server HTTP.
+```powershell
+cd "C:\Users\ACER\Desktop\an 4\SOPM\Sopm26-EmmDor-beauty\aplicatia-parcel"
+npm install
+npm run dev
+```
 
-## 📁 Ce conține
+Deschide adresa afișată în terminal (de obicei `http://localhost:1234`). Pentru versiunea de producție:
 
-- `*.html` – paginile site-ului vechi
-- `style.css` – stilurile
-- `script.js` – datele produselor și logica (DOM, coș, favorite, căutare)
-- `*.jpg` – imaginile produselor
-- `server.js` – server static minimal pentru rulare locală
-- `auth.js` – experiment Supabase, nefolosit de pagini (păstrat pentru istoric)
+```powershell
+npm run build
+npm run preview
+```
 
+`npm run build` generează `dist/`; `npm run preview` servește build-ul la `http://localhost:3000` și trimite rutele necunoscute către `index.html`, ca reîncărcarea unei pagini secundare să nu dea 404.
+
+> Nu deschide `index.html` prin dublu-click: modulele JS au nevoie de un server HTTP.
+
+## ✨ Funcționalități
+
+* Catalog împărțit în branduri accesibile, luxury și promoții, cu filtrare și căutare sincronizată cu URL-ul (`?q=...`).
+* Selector de nuanțe și carduri de produs cu adăugare în coș / favorite.
+* Coș complet (cantități, eliminare, totaluri) și checkout cu validarea câmpurilor.
+* Formular de contact controlat, cu mesaje de eroare și confirmare.
+* Căutare live: produse locale + sugestii din catalogul mondial Open Beauty Facts.
+* Pagini informaționale (despre noi, lounge, cariere, livrare, plată, retur) și notificări `toast`.
+* Interfață accesibilă: elemente semantice, `label`/`htmlFor`, `alt`, skip-link, focus vizibil.
+
+## 👥 Echipa
+
+* **Baiculescu Teodora** — UI/UX & arhitectură
+* **Carabelea Emma** — flux utilizator, coș și cont
+* **Nițu Delia** — date dinamice și logică de componente
+
+## 📦 Versiunea veche
+
+Site-ul inițial, static (HTML + CSS + JavaScript), este păstrat în [`../arhiva-html`](../arhiva-html/README.md) pentru comparație.
